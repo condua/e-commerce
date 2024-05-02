@@ -60,12 +60,13 @@ export const loginUser = (email, password) => async (dispatch) => {
             type: LOGIN_USER_SUCCESS,
             payload: data.user,
         });
-
+        localStorage.setItem('isLog', true);
     } catch (error) {
         dispatch({
             type: LOGIN_USER_FAIL,
             payload: error.response.data.message,
         });
+        localStorage.setItem('isLog', false);
     }
 };
 
@@ -126,6 +127,7 @@ export const logoutUser = () => async (dispatch) => {
     try {
         await axios.get('/api/v1/logout');
         dispatch({ type: LOGOUT_USER_SUCCESS });
+        localStorage.setItem('isLog', false);
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,

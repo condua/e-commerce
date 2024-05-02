@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, forgotPassword } from '../../actions/userAction';
 import { useSnackbar } from 'notistack';
@@ -24,6 +24,8 @@ const ForgotPassword = () => {
     const [form] = Form.useForm();
 
     const [newPassword, setNewPassword] = useState('')
+
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
@@ -49,6 +51,8 @@ const ForgotPassword = () => {
             }).then((res)=>{
                 console.log(res);
             });
+            alert('Đổi mật khẩu thành công');
+            navigate('/login')
         }catch(err){
             alert(err);
         }

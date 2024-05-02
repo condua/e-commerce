@@ -10,10 +10,12 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const [isLog, setIsLog] = useState(localStorage.getItem('isLog'));
   const { cartItems } = useSelector((state) => state.cart);
   const [togglePrimaryDropDown, setTogglePrimaryDropDown] = useState(false);
   const [toggleSecondaryDropDown, setToggleSecondaryDropDown] = useState(false);
   const [loading, setLoading] = useState(true);
+
 
 
   return (

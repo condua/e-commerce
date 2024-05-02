@@ -73,7 +73,7 @@ const Sidebar = ({ activeTab }) => {
                     <p className="flex w-full justify-between font-medium text-gray-500">PAYMENTS</p>
                 </div>
                 <div className="flex flex-col pb-3 border-b text-sm">
-                    <Link className="p-3 pl-14 hover:bg-blue-50 hover:text-primary-blue flex justify-between pr-6" to="/">Gift Cards <span className="font-medium text-primary-green">₹0</span></Link>
+                    <Link className="p-3 pl-14 hover:bg-blue-50 hover:text-primary-blue flex justify-between pr-6" to="/">Gift Cards <span className="font-medium text-primary-green">₫0</span></Link>
                     <Link className="p-3 pl-14 hover:bg-blue-50 hover:text-primary-blue" to="/">Saved UPI</Link>
                     <Link className="p-3 pl-14 hover:bg-blue-50 hover:text-primary-blue" to="/">Saved Cards</Link>
                 </div>
