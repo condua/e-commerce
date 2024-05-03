@@ -89,7 +89,7 @@ const Register = () => {
 
     return (
         <>
-            <MetaData title="Register | Flipkart" />
+            <MetaData title="Register | Roced" />
 
             {loading && <BackdropLoader />}
             <main className="w-full mt-12 sm:pt-20 sm:mt-0">

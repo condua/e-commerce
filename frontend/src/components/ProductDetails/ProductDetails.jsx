@@ -203,7 +203,7 @@ const ProductDetails = () => {
                                     {Array(3).fill("").map((el, i) => (
                                         <p className="text-sm flex items-center gap-1" key={i}>
                                             <span className="text-primary-lightGreen"><LocalOfferIcon sx={{ fontSize: "20px" }} /></span>
-                                            <span className="font-medium ml-2">Bank Offer</span> 15% Instant discount on first Flipkart Pay Later order of 500 and above <Link className="text-primary-blue font-medium" to="/">T&C</Link>
+                                            <span className="font-medium ml-2">Bank Offer</span> 15% Instant discount on first Roced Pay Later order of 500 and above <Link className="text-primary-blue font-medium" to="/">T&C</Link>
                                         </p>
                                     ))}
                                     {/* <!-- banks offers --> */}

@@ -18,7 +18,7 @@ export const newOrder = (order) => async (dispatch) => {
             type: NEW_ORDER_SUCCESS,
             payload: data,
         })
-
+        
     } catch (error) {
         dispatch({
             type: NEW_ORDER_FAIL,

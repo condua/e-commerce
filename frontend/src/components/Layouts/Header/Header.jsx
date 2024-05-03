@@ -19,30 +19,30 @@ const Header = () => {
 
 
   return (
-    <header className="bg-primary-blue fixed top-0 py-2.5 w-full z-10">
-      <div className="w-full sm:w-9/12 px-1 sm:px-4 m-auto flex justify-between items-center relative">
+    <header className="bg-primary-cyan fixed top-0 w-full z-10 p-3">
+      <div className="w-full sm:w-9/12 px-1 sm:px-4 m-auto flex justify-center items-center relative">
         <div className="flex items-center flex-1">
           <a href="/">
-            <img draggable="false" className="h-7 mr-1 sm:mr-4" src={logo} alt="Flipkart Logo" />
+            <img draggable="false" style={{width: '150px', marginRight: '20px'}} src={logo} alt="Roced Logo" />
           </a>
           <Searchbar />
         </div>
         <div className="flex items-center justify-between ml-1 sm:ml-0 gap-0.5 sm:gap-7 relative">
           {isAuthenticated !== true ?
-            <a href="/login" className="px-3 sm:px-9 py-0.5 text-primary-blue bg-white border font-medium rounded-sm cursor-pointer">Login</a>
+            <a href="/login" className="px-3 sm:px-9 py-0.5 text-black bg-white border font-medium rounded-sm cursor-pointer">Login</a>
             :
             (
-              <span className="userDropDown flex items-center text-white font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>Xin chào
+              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>Xin chào
                 <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
               </span>
             )
           }
           {togglePrimaryDropDown && <PrimaryDropDownMenu setTogglePrimaryDropDown={setTogglePrimaryDropDown} user={user} />}
-          <span className="moreDropDown hidden sm:flex items-center text-white font-medium gap-1 cursor-pointer" onClick={() => setToggleSecondaryDropDown(!toggleSecondaryDropDown)}>More
+          {/* <span className="moreDropDown hidden sm:flex items-center text-white font-medium gap-1 cursor-pointer" onClick={() => setToggleSecondaryDropDown(!toggleSecondaryDropDown)}>More
             <span>{toggleSecondaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
           </span>
-          {toggleSecondaryDropDown && <SecondaryDropDownMenu />}
-          <a href="/cart" className="flex items-center text-white font-medium gap-2 relative">
+          {toggleSecondaryDropDown && <SecondaryDropDownMenu />} */}
+          <a href="/cart" className="flex items-center text-black font-medium gap-2 relative">
             <span><ShoppingCartIcon /></span>
             {cartItems.length > 0 &&
               <div className="w-5 h-5 p-2 bg-red-500 text-xs rounded-full absolute -top-2 left-3 flex justify-center items-center border">
