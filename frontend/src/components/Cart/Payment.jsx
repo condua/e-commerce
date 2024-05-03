@@ -49,77 +49,81 @@ const Payment = () => {
     //     totalPrice,
     // }
 
-    const submitHandler = async (e) => {
+    const submitHandler = async (e) =>{
         e.preventDefault();
+    }
 
-        // paymentBtn.current.disabled = true;
-        setPayDisable(true);
+    // const submitHandler = async (e) => {
+    //     e.preventDefault();
 
-        try {
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
+    //     // paymentBtn.current.disabled = true;
+    //     setPayDisable(true);
 
-            const { data } = await axios.post(
-                '/api/v1/payment/process',
-                paymentData,
-                config,
-            );
+    //     try {
+    //         const config = {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //         };
 
-            let info = {
-                action: "https://securegw-stage.paytm.in/order/process",
-                params: data.paytmParams
-            }
+    //         const { data } = await axios.post(
+    //             '/api/v1/payment/process',
+    //             paymentData,
+    //             config,
+    //         );
 
-            post(info)
+    //         let info = {
+    //             action: "https://securegw-stage.cod.in/order/process",
+    //             params: data.codParams
+    //         }
 
-            // if (!stripe || !elements) return;
+    //         post(info)
 
-            // const result = await stripe.confirmCardPayment(client_secret, {
-            //     payment_method: {
-            //         card: elements.getElement(CardNumberElement),
-            //         billing_details: {
-            //             name: user.name,
-            //             email: user.email,
-            //             address: {
-            //                 line1: shippingInfo.address,
-            //                 city: shippingInfo.city,
-            //                 country: shippingInfo.country,
-            //                 state: shippingInfo.state,
-            //                 postal_code: shippingInfo.pincode,
-            //             },
-            //         },
-            //     },
-            // });
+    //         // if (!stripe || !elements) return;
 
-            // if (result.error) {
-            //     paymentBtn.current.disabled = false;
-            //     enqueueSnackbar(result.error.message, { variant: "error" });
-            // } else {
-            //     if (result.paymentIntent.status === "succeeded") {
+    //         // const result = await stripe.confirmCardPayment(client_secret, {
+    //         //     payment_method: {
+    //         //         card: elements.getElement(CardNumberElement),
+    //         //         billing_details: {
+    //         //             name: user.name,
+    //         //             email: user.email,
+    //         //             address: {
+    //         //                 line1: shippingInfo.address,
+    //         //                 city: shippingInfo.city,
+    //         //                 country: shippingInfo.country,
+    //         //                 state: shippingInfo.state,
+    //         //                 postal_code: shippingInfo.pincode,
+    //         //             },
+    //         //         },
+    //         //     },
+    //         // });
 
-            //         order.paymentInfo = {
-            //             id: result.paymentIntent.id,
-            //             status: result.paymentIntent.status,
-            //         };
+    //         // if (result.error) {
+    //         //     paymentBtn.current.disabled = false;
+    //         //     enqueueSnackbar(result.error.message, { variant: "error" });
+    //         // } else {
+    //         //     if (result.paymentIntent.status === "succeeded") {
 
-            //         dispatch(newOrder(order));
-            //         dispatch(emptyCart());
+    //         //         order.paymentInfo = {
+    //         //             id: result.paymentIntent.id,
+    //         //             status: result.paymentIntent.status,
+    //         //         };
 
-            //         navigate("/order/success");
-            //     } else {
-            //         enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
-            //     }
-            // }
+    //         //         dispatch(newOrder(order));
+    //         //         dispatch(emptyCart());
 
-        } catch (error) {
-            // paymentBtn.current.disabled = false;
-            setPayDisable(false);
-            enqueueSnackbar(error, { variant: "error" });
-        }
-    };
+    //         //         navigate("/order/success");
+    //         //     } else {
+    //         //         enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+    //         //     }
+    //         // }
+
+    //     } catch (error) {
+    //         // paymentBtn.current.disabled = false;
+    //         setPayDisable(false);
+    //         enqueueSnackbar(error, { variant: "error" });
+    //     }
+    // };
 
     useEffect(() => {
         if (error) {
@@ -131,7 +135,7 @@ const Payment = () => {
 
     return (
         <>
-            <MetaData title="Roced: Secure Payment | Paytm" />
+            <MetaData title="Roced: Secure Payment | cod" />
 
             <main className="w-full mt-20">
 
@@ -148,16 +152,16 @@ const Payment = () => {
                                     <FormControl>
                                         <RadioGroup
                                             aria-labelledby="payment-radio-group"
-                                            defaultValue="paytm"
+                                            defaultValue="cod"
                                             name="payment-radio-button"
                                         >
                                             <FormControlLabel
-                                                value="paytm"
+                                                value="cod"
                                                 control={<Radio />}
                                                 label={
                                                     <div className="flex items-center gap-4">
-                                                        <img draggable="false" className="h-6 w-6 object-contain" src="https://rukminim1.flixcart.com/www/96/96/promos/01/09/2020/a07396d4-0543-4b19-8406-b9fcbf5fd735.png" alt="Paytm Logo" />
-                                                        <span>Paytm</span>
+                                                        <img draggable="false" className="h-10 w-10 object-contain" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT08FpvDoIXUDGdRJ2iFh0FOqegvJjOgoHKZT6wXXnLjA&s" alt="cod Logo" />
+                                                        <span>COD</span>
                                                     </div>
                                                 }
                                             />
