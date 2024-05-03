@@ -25,7 +25,7 @@ const Shipping = () => {
 
     const [address, setAddress] = useState(shippingInfo.address);
     const [city, setCity] = useState(shippingInfo.city);
-    const [country, setCountry] = useState('IN');
+    const [country, setCountry] = useState('VN');
     const [state, setState] = useState(shippingInfo.state);
     const [pincode, setPincode] = useState(shippingInfo.pincode);
     const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
@@ -115,7 +115,7 @@ const Shipping = () => {
                                                 label="Country"
                                                 // onChange={(e) => setCountry(e.target.value)}
                                             >
-                                                <MenuItem value={'IN'}>India</MenuItem>
+                                                <MenuItem value={'VN'}>Việt Nam</MenuItem>
                                             </Select>
                                         </FormControl>
 

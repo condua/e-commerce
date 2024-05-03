@@ -2,6 +2,9 @@
   "name": "frontend",
   "homepage": "https://roced.online",
   "proxy": "http://localhost:4000",
+  "options": {
+    "allowedHosts": ["localhost", ".localhost"]
+    },
   "version": "0.1.0",
   "private": true,
   "dependencies": {

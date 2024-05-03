@@ -200,12 +200,12 @@ const ProductDetails = () => {
 
                                     {/* <!-- banks offers --> */}
                                     <p className="text-md font-medium">Available offers</p>
-                                    {Array(3).fill("").map((el, i) => (
+                                    {/* {Array(3).fill("").map((el, i) => (
                                         <p className="text-sm flex items-center gap-1" key={i}>
                                             <span className="text-primary-lightGreen"><LocalOfferIcon sx={{ fontSize: "20px" }} /></span>
                                             <span className="font-medium ml-2">Bank Offer</span> 15% Instant discount on first Roced Pay Later order of 500 and above <Link className="text-primary-blue font-medium" to="/">T&C</Link>
                                         </p>
-                                    ))}
+                                    ))} */}
                                     {/* <!-- banks offers --> */}
 
                                     {/* <!-- warranty & brand --> */}
@@ -249,7 +249,7 @@ const ProductDetails = () => {
                                                     <p className="flex items-center gap-3"><span className="text-primary-blue"><CachedIcon sx={{ fontSize: "18px" }} /></span> 7 Days Replacement Policy</p>
                                                 </li>
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><CurrencyRupeeIcon sx={{ fontSize: "18px" }} /></span> Cash on Delivery available</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><span style={{fontSize:'18px',marginRight:'5px', marginLeft:'5px'}}>₫</span></span>  Cash on Delivery available</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -265,9 +265,9 @@ const ProductDetails = () => {
                                     {/* <!-- seller details --> */}
 
                                     {/* <!-- flipkart plus banner --> */}
-                                    <div className="sm:w-1/2 mt-4 border">
+                                    {/* <div className="sm:w-1/2 mt-4 border">
                                         <img draggable="false" className="w-full h-full object-contain" src="https://rukminim1.flixcart.com/lockin/763/305/images/promotion_banner_v2_active.png" alt="" />
-                                    </div>
+                                    </div> */}
                                     {/* <!-- flipkart plus banner --> */}
 
                                     {/* <!-- description details --> */}
