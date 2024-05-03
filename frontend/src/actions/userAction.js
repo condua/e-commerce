@@ -71,7 +71,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 };
 
 // Register User
-export const registerUser = (userData) => async (dispatch) => {
+export const registerUser = (userData, email, name) => async (dispatch) => {
     try {
 
         dispatch({ type: REGISTER_USER_REQUEST });
@@ -92,7 +92,11 @@ export const registerUser = (userData) => async (dispatch) => {
             type: REGISTER_USER_SUCCESS,
             payload: data.user,
         });
-
+        await axios.post('/api/v1/send-welcome-email', { 
+            email: email,
+            name: name,
+        });
+        console.log(userData)
     } catch (error) {
         dispatch({
             type: REGISTER_USER_FAIL,

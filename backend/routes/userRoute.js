@@ -59,7 +59,7 @@ router.post('/forgot-password', async (req, res) => {
           // Send the OTP to the user's email
           const mailOptions = {
               from: {
-                  name: 'E-Wallet',
+                  name: 'Roced',
                   address: 'noreply.ewallet.hcmut@gmail.com'
               },
               to: email,
@@ -109,7 +109,63 @@ router.post('/forgot-password', async (req, res) => {
       });
 
 
-        
+router.post('/send-welcome-email', async(req, res) =>{
+  try {
+        const { email, name } = req.body
+        const sendEmail = {
+          from: {
+            name: 'Roced',
+            address: 'noreply.ewallet.hcmut@gmail.com'
+          },
+          to: email,
+          subject: `Cảm ơn ${name} đã đăng ký thành công tài khoản tại Roced`,
+          html:`
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <base target="_top">
+          </head>
+          <body>
+              <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+                  <div style="margin:50px auto;width:80%;padding:20px 0">
+                      <div style="border-bottom:5px solid #eee">
+                          <a href="" style="font-size:30px;color: #f7c800;text-decoration:none;font-weight:600">Roced</a>
+                      </div>
+                      <p style="font-size:15px">Xin chào ${name},</p>
+                      <p>Cảm ơn bạn đã chọn Roced. Chúc bạn có một trải nghiệm mua sắm tuyệt vời tại Roced.</p>
+                      <p>Mọi thắc mắc có thể liên hệ với đội ngũ chăm sóc khách hàng của Roced</p>
+                      <h2 style="background: white;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;"><img src='https://i.imgur.com/Ohd5lFf.png'/></h2>
+                      <p style="font-size:15px;">Trân trọng,<br />Roced</p>
+                      <hr style="border:none;border-top:5px solid #eee" />
+                      <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
+                          <p>Roced</p>
+                      </div>
+                  </div>
+              </div>
+          </body>
+          </html>
+          ` 
+        };
+        transporter.sendMail(sendEmail, (error, info) => 
+        {
+          if (error) 
+          {
+            console.error('Error sending email:', error);
+            res.status(500).json({ error: 'Error sending OTP email' });
+          } 
+          else 
+          {
+            console.log('Email sent:', info.response);
+            res.status(200).json({ message: 'OTP sent successfully', otp: otp });
+          }
+         }
+        )
+        res.status(200).json({ message: 'sent successfully' });
+
+  }catch(err){
+    console.error(err);
+  }
+})    
         
 
 module.exports = router;

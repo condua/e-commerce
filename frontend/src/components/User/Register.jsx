@@ -56,7 +56,7 @@ const Register = () => {
         formData.set("password", password);
         formData.set("avatar", avatar);
 
-        dispatch(registerUser(formData));
+        dispatch(registerUser(formData, email, name));
     }
 
     const handleDataChange = (e) => {
