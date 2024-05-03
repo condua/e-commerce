@@ -28,7 +28,7 @@ const Home = () => {
     <>
       <MetaData title="Roced" />
       <Categories />
-      <main className="flex flex-col gap-3 px-2 mt-16 sm:mt-2">
+      <main className="flex flex-col gap-3 px-2 mt-44 sm:mt-2">
         <Banner />
         <DealSlider title={"Discounts for You"} />
         {!loading && <ProductSlider title={"Suggested for You"} tagline={"Based on Your Activity"} />}

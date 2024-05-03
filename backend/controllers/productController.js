@@ -190,22 +190,29 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
 
 // Delete Product ---ADMIN
 exports.deleteProduct = asyncErrorHandler(async (req, res, next) => {
+    try {
+        const product = await Product.findById(req.params.id);
 
-    const product = await Product.findById(req.params.id);
+        if (!product) {
+            return next(new ErrorHandler("Product Not Found", 404));
+        }
 
-    if (!product) {
-        return next(new ErrorHandler("Product Not Found", 404));
+        // Delete product images from Cloudinary
+        for (let i = 0; i < product.images.length; i++) {
+            await cloudinary.uploader.destroy(product.images[i].public_id);
+        }
+
+        // Remove the product from the database
+        await product.deleteOne(); // or product.remove() depending on your Mongoose version
+
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully"
+        });
+    } catch (err) {
+        // Handle errors
+        return next(new ErrorHandler(err.message, 500));
     }
-
-    for (let i = 0; i < product.images.length; i++) {
-        await cloudinary.v2.uploader.destroy(product.images[i].public_id);
-    }
-
-    await product.remove();
-
-    res.status(201).json({
-        success: true
-    });
 });
 
 // Create OR Update Reviews

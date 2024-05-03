@@ -19,11 +19,11 @@ const Header = () => {
 
 
   return (
-    <header className="bg-primary-cyan fixed top-0 w-full z-10 p-3">
-      <div className="w-full sm:w-9/12 px-1 sm:px-4 m-auto flex justify-center items-center relative">
+    <header className="bg-white fixed top-0 w-full z-10 p-3">
+      <div className="w-full sm:w-5/6 px-1 sm:px-4 m-auto flex justify-center items-center relative">
         <div className="flex items-center flex-1">
           <a href="/">
-            <img draggable="false" style={{width: '150px', marginRight: '20px'}} src={logo} alt="Roced Logo" />
+            <img draggable="false" style={{width: '150px', marginRight: '40px'}} src={logo} alt="Roced Logo" />
           </a>
           <Searchbar />
         </div>
