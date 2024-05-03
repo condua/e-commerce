@@ -32,10 +32,10 @@ const Home = () => {
         <Banner />
         <DealSlider title={"Discounts for You"} />
         {!loading && <ProductSlider title={"Suggested for You"} tagline={"Based on Your Activity"} />}
-        <DealSlider title={"Top Brands, Best Price"} />
-        {!loading && <ProductSlider title={"You May Also Like..."} tagline={"Based on Your Interest"} />}
+        {/* <DealSlider title={"Top Brands, Best Price"} /> */}
+        {/* {!loading && <ProductSlider title={"You May Also Like..."} tagline={"Based on Your Interest"} />}
         <DealSlider title={"Top Offers On"} />
-        {!loading && <ProductSlider title={"Don't Miss These!"} tagline={"Inspired by your order"} />}
+        {!loading && <ProductSlider title={"Don't Miss These!"} tagline={"Inspired by your order"} />} */}
       </main>
     </>
   );
