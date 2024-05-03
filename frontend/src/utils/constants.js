@@ -3,7 +3,7 @@ export const categories = [
     "Lights",
     "Trees",
     "Pictures",
-    "Desk",
+    "Desks",
     "Bedrooms",
 ];
 // Product Sliders Offers
