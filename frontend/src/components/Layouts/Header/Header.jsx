@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const name = useSelector((state) => state.user.name) || 'Phúc';
   const [isLog, setIsLog] = useState(localStorage.getItem('isLog'));
   const { cartItems } = useSelector((state) => state.cart);
   const [togglePrimaryDropDown, setTogglePrimaryDropDown] = useState(false);
@@ -32,7 +33,7 @@ const Header = () => {
             <a href="/login" className="px-3 sm:px-9 py-0.5 text-black bg-white border font-medium rounded-sm cursor-pointer">Login</a>
             :
             (
-              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>Xin chào
+              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>Xin chào {user.name || ''}
                 <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
               </span>
             )

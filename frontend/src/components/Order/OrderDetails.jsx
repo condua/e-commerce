@@ -27,7 +27,7 @@ const OrderDetails = () => {
 
     return (
         <>
-            <MetaData title="Order Details | Flipkart" />
+            <MetaData title="Order Details | Roced" />
 
             <MinCategory />
             <main className="w-full mt-14 sm:mt-4">

@@ -31,7 +31,7 @@ const footerLinks = [
         redirect: "",
       },
       // {
-      //   name: "Flipkart Wholesale",
+      //   name: "Roced Wholesale",
       //   redirect: "",
       // },
       {
