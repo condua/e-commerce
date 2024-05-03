@@ -94,7 +94,7 @@ const Account = () => {
                                     {/* <!-- email address info --> */}
 
                                     {/* <!-- mobile number info --> */}
-                                    <div className="flex flex-col gap-5 items-start">
+                                    {/* <div className="flex flex-col gap-5 items-start">
                                         <span className="font-medium text-lg">Mobile Number
                                             <span className="text-sm text-primary-blue font-medium ml-3 sm:ml-8 cursor-pointer" id="mobEditBtn">Edit</span>
                                         </span>
@@ -106,7 +106,7 @@ const Account = () => {
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> */}
                                     {/* <!-- mobile number info --> */}
 
                                     {/* <!-- faqs --> */}
