@@ -16,8 +16,8 @@ const UpdateProfile = () => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { user } = useSelector((state) => state.user);
-    const { error, isUpdated, loading } = useSelector((state) => state.profile);
+    const { user } = useSelector((state) => state.user) || null;
+    const { error, isUpdated, loading } = useSelector((state) => state.profile) || null;
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
