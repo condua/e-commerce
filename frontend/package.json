@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "homepage": "https://roced.online",
-  "proxy": "http://localhost:4000",
   "options": {
     "allowedHosts": ["localhost", ".localhost"]
     },
