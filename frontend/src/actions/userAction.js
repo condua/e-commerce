@@ -113,8 +113,11 @@ export const loadUser = () => async (dispatch) => {
 
         dispatch({ type: LOAD_USER_REQUEST });
         const token = localStorage.getItem('token'); 
-        const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/me');
-
+        const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/me', {
+            headers: {
+                Authorization: `Bearer ${token}` // Thêm token vào header Authorization
+            }
+        });
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
@@ -147,13 +150,14 @@ export const updateProfile = (userData) => async (dispatch) => {
     try {
 
         dispatch({ type: UPDATE_PROFILE_REQUEST });
+        const token = localStorage.getItem('token'); 
 
         const config = {
             headers: {
                 "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}` // Thêm token vào header Authorization
             },
-        }
-
+        };
         const { data } = await axios.put(
             'https://e-commerce-1-v807.onrender.com/api/v1/me/update',
             userData,
@@ -178,10 +182,13 @@ export const updatePassword = (passwords) => async (dispatch) => {
     try {
 
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
+        const token = localStorage.getItem('token'); // Lấy token từ LocalStorage
 
         const config = {
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}` // Thêm token vào header Authorization
+
             },
         }
 
@@ -272,6 +279,8 @@ export const getAllUsers = () => async (dispatch) => {
     try {
 
         dispatch({ type: ALL_USERS_REQUEST });
+        const token = localStorage.getItem('token'); // Lấy token từ LocalStorage
+
         const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/admin/users');
         dispatch({
             type: ALL_USERS_SUCCESS,
@@ -289,9 +298,21 @@ export const getAllUsers = () => async (dispatch) => {
 // Get User Details ---ADMIN
 export const getUserDetails = (id) => async (dispatch) => {
     try {
-
         dispatch({ type: USER_DETAILS_REQUEST });
-        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/admin/user/${id}`);
+
+        const token = localStorage.getItem('token'); // Lấy token từ LocalStorage
+
+        if (!token) {
+            throw new Error('Token is not available');
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}` // Thêm token vào header Authorization
+            },
+        };
+
+        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/admin/user/${id}`, config);
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -301,20 +322,22 @@ export const getUserDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_DETAILS_FAIL,
-            payload: error.response.data.message,
+            payload: error.response ? error.response.data.message : error.message,
         });
     }
 };
-
 // Update User Details ---ADMIN
 export const updateUser = (id, userData) => async (dispatch) => {
     try {
 
         dispatch({ type: UPDATE_USER_REQUEST });
+        const token = localStorage.getItem('token'); // Lấy token từ LocalStorage
 
         const config = {
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}` // Thêm token vào header Authorization
+
             },
         }
 
@@ -342,7 +365,13 @@ export const deleteUser = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: DELETE_USER_REQUEST });
-        const { data } = await axios.delete(`https://e-commerce-1-v807.onrender.com/api/v1/admin/user/${id}`);
+        const token = localStorage.getItem('token'); // Lấy token từ LocalStorage
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}` // Thêm token vào header Authorization
+            },
+        };
+        const { data } = await axios.delete(`https://e-commerce-1-v807.onrender.com/api/v1/admin/user/${id}`, config);
 
         dispatch({
             type: DELETE_USER_SUCCESS,
