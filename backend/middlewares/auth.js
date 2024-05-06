@@ -4,16 +4,21 @@ const ErrorHandler = require('../utils/errorHandler');
 const asyncErrorHandler = require('./asyncErrorHandler');
 
 exports.isAuthenticatedUser = asyncErrorHandler(async (req, res, next) => {
+    const token = req.header('Authorization');
 
-    const { token } = req.cookies;
-
-    if (!token) {
-        return next(new ErrorHandler("Please Login to Access", 401))
+    if (!token || !token.startsWith('Bearer ')) {
+        return next(new ErrorHandler("Please Login to Access", 401));
     }
 
-    const decodedData = jwt.verify(token, process.env.JWT_SECRET || 'WFFWf15115U842UGUBWF81EE858UYBY51BGBJ5E51Q');
-    req.user = await User.findById(decodedData.id);
-    next();
+    const tokenString = token.replace('Bearer ', '');
+
+    try {
+        const decodedData = jwt.verify(tokenString, process.env.JWT_SECRET || 'WFFWf15115U842UGUBWF81EE858UYBY51BGBJ5E51Q');
+        req.user = await User.findById(decodedData.id);
+        next();
+    } catch (error) {
+        return next(new ErrorHandler("Invalid token", 401));
+    }
 });
 
 exports.authorizeRoles = (...roles) => {

@@ -61,6 +61,8 @@ export const loginUser = (email, password) => async (dispatch) => {
             payload: data.user,
         });
         localStorage.setItem('isLog', true);
+        localStorage.setItem('token', data.token);
+
     } catch (error) {
         dispatch({
             type: LOGIN_USER_FAIL,
@@ -110,14 +112,14 @@ export const loadUser = () => async (dispatch) => {
     try {
 
         dispatch({ type: LOAD_USER_REQUEST });
-
+        const token = localStorage.getItem('token'); 
         const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/me');
 
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
         });
-
+        
     } catch (error) {
         dispatch({
             type: LOAD_USER_FAIL,
