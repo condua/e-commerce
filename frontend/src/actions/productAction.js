@@ -33,6 +33,15 @@ import {
     SLIDER_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 
+const getTokenConfig = () => {
+    const token = localStorage.getItem('token'); // Lấy token từ LocalStorage hoặc từ nơi bạn đã lưu trữ token
+    return {
+        headers: {
+            Authorization: `Bearer ${token}` // Thêm token vào header Authorization
+        },
+    };
+};
+
 // Get All Products --- Filter/Search/Sort
 export const getProducts =
     (keyword = "", category, price = [0, 200000], ratings = 0, currentPage = 1) => async (dispatch) => {
@@ -43,7 +52,7 @@ export const getProducts =
             if (category) {
                 url = `https://e-commerce-1-v807.onrender.com/api/v1/products?keyword=${keyword}&category=${category}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&page=${currentPage}`;
             }
-            const { data } = await axios.get(url);
+            const { data } = await axios.get(url, getTokenConfig());
 
             dispatch({
                 type: ALL_PRODUCTS_SUCCESS,
@@ -62,7 +71,7 @@ export const getSimilarProducts = (category) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PRODUCTS_REQUEST });
 
-        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/products?category=${category}`);
+        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/products?category=${category}`, getTokenConfig());
 
         dispatch({
             type: ALL_PRODUCTS_SUCCESS,
@@ -81,7 +90,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/product/${id}`);
+        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/product/${id}`, getTokenConfig());
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -99,8 +108,8 @@ export const getProductDetails = (id) => async (dispatch) => {
 export const newReview = (reviewData) => async (dispatch) => {
     try {
         dispatch({ type: NEW_REVIEW_REQUEST });
-        const config = { header: { "Content-Type": "application/json" } }
-        const { data } = await axios.put("https://e-commerce-1-v807.onrender.com/api/v1/review", reviewData, config);
+        const config = { headers: { "Content-Type": "application/json" } };
+        const { data } = await axios.put("https://e-commerce-1-v807.onrender.com/api/v1/review", reviewData, { ...config, ...getTokenConfig() });
 
         dispatch({
             type: NEW_REVIEW_SUCCESS,
@@ -119,7 +128,7 @@ export const getSliderProducts = () => async (dispatch) => {
     try {
         dispatch({ type: SLIDER_PRODUCTS_REQUEST });
 
-        const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/products/all');
+        const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/products/all', getTokenConfig());
 
         dispatch({
             type: SLIDER_PRODUCTS_SUCCESS,
@@ -138,7 +147,7 @@ export const getAdminProducts = () => async (dispatch) => {
     try {
         dispatch({ type: ADMIN_PRODUCTS_REQUEST });
 
-        const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/admin/products');
+        const { data } = await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/admin/products', getTokenConfig());
 
         dispatch({
             type: ADMIN_PRODUCTS_SUCCESS,
@@ -156,8 +165,8 @@ export const getAdminProducts = () => async (dispatch) => {
 export const createProduct = (productData) => async (dispatch) => {
     try {
         dispatch({ type: NEW_PRODUCT_REQUEST });
-        const config = { header: { "Content-Type": "application/json" } }
-        const { data } = await axios.post("https://e-commerce-1-v807.onrender.com/api/v1/admin/product/new", productData, config);
+        const config = { headers: { "Content-Type": "application/json" } };
+        const { data } = await axios.post("https://e-commerce-1-v807.onrender.com/api/v1/admin/product/new", productData, { ...config, ...getTokenConfig() });
 
         dispatch({
             type: NEW_PRODUCT_SUCCESS,
@@ -175,8 +184,8 @@ export const createProduct = (productData) => async (dispatch) => {
 export const updateProduct = (id, productData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PRODUCT_REQUEST });
-        const config = { header: { "Content-Type": "application/json" } }
-        const { data } = await axios.put(`https://e-commerce-1-v807.onrender.com/api/v1/admin/product/${id}`, productData, config);
+        const config = { headers: { "Content-Type": "application/json" } };
+        const { data } = await axios.put(`https://e-commerce-1-v807.onrender.com/api/v1/admin/product/${id}`, productData, { ...config, ...getTokenConfig() });
 
         dispatch({
             type: UPDATE_PRODUCT_SUCCESS,
@@ -194,7 +203,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_PRODUCT_REQUEST });
-        const { data } = await axios.delete(`https://e-commerce-1-v807.onrender.com/api/v1/admin/product/${id}`);
+        const { data } = await axios.delete(`https://e-commerce-1-v807.onrender.com/api/v1/admin/product/${id}`, getTokenConfig());
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
@@ -212,7 +221,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 export const getAllReviews = (id) => async (dispatch) => {
     try {
         dispatch({ type: ALL_REVIEWS_REQUEST });
-        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/admin/reviews?id=${id}`);
+        const { data } = await axios.get(`https://e-commerce-1-v807.onrender.com/api/v1/admin/reviews?id=${id}`, getTokenConfig());
 
         dispatch({
             type: ALL_REVIEWS_SUCCESS,
@@ -230,7 +239,7 @@ export const getAllReviews = (id) => async (dispatch) => {
 export const deleteReview = (reviewId, productId) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_REVIEW_REQUEST });
-        const { data } = await axios.delete(`https://e-commerce-1-v807.onrender.com/api/v1/admin/reviews?id=${reviewId}&productId=${productId}`);
+        const { data } = await axios.delete(`https://e-commerce-1-v807.onrender.com/api/v1/admin/reviews?id=${reviewId}&productId=${productId}`, getTokenConfig());
 
         dispatch({
             type: DELETE_REVIEW_SUCCESS,
