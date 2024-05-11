@@ -5,6 +5,26 @@ const ErrorHandler = require('../utils/errorHandler');
 const sendEmail = require('../utils/sendEmail');
 
 // Create New Order
+exports.createNewOrder = asyncErrorHandler(async (req, res, next)=>{
+    const {
+        shippingInfo,
+        orderItems,
+        totalPrice,
+    } = req.body;
+    const order = await Order.create({
+        shippingInfo,
+        orderItems,
+        totalPrice,
+        user: req.user._id,
+    })
+
+    await order.save();
+
+    res.status(201).json({
+        message: 'Order successfully',
+        order,
+    })
+})
 exports.newOrder = asyncErrorHandler(async (req, res, next) => {
 
     const {
@@ -29,17 +49,17 @@ exports.newOrder = asyncErrorHandler(async (req, res, next) => {
         user: req.user._id,
     });
 
-    await sendEmail({
-        email: req.user.email,
-        templateId: process.env.SENDGRID_ORDER_TEMPLATEID,
-        data: {
-            name: req.user.name,
-            shippingInfo,
-            orderItems,
-            totalPrice,
-            oid: order._id,
-        }
-    });
+    // await sendEmail({
+    //     email: req.user.email,
+    //     templateId: process.env.SENDGRID_ORDER_TEMPLATEID,
+    //     data: {
+    //         name: req.user.name,
+    //         shippingInfo,
+    //         orderItems,
+    //         totalPrice,
+    //         oid: order._id,
+    //     }
+    // });
 
     res.status(201).json({
         success: true,
@@ -153,3 +173,4 @@ exports.deleteOrder = asyncErrorHandler(async (req, res, next) => {
         success: true,
     });
 });
+

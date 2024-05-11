@@ -57,20 +57,20 @@ const orderSchema = new mongoose.Schema({
         ref: "User",
         required: true
     },
-    paymentInfo: {
-        id: {
-            type: String,
-            required: true
-        },
-        status: {
-            type: String,
-            required: true
-        },
-    },
-    paidAt: {
-        type: Date,
-        required: true
-    },
+    // paymentInfo: {
+    //     id: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     status: {
+    //         type: String,
+    //         required: true
+    //     },
+    // },
+    // paidAt: {
+    //     type: Date,
+    //     required: true
+    // },
     totalPrice: {
         type: Number,
         required: true,
@@ -87,6 +87,10 @@ const orderSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    status:{
+        type: String,
+        default: 'Chưa xác nhận',
+    }
 });
 
 module.exports = mongoose.model("Order", orderSchema);

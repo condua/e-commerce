@@ -17,7 +17,6 @@ const Header = () => {
   const [toggleSecondaryDropDown, setToggleSecondaryDropDown] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  console.log(1)
 
   return (
     <header className="bg-white fixed top-0 w-full z-10 p-3">

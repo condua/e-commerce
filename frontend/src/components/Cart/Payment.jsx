@@ -19,11 +19,13 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import MetaData from '../Layouts/MetaData';
 import React from "react";
+import { useNavigate } from 'react-router-dom';
+import { emptyCart } from '../../actions/cartAction';
 
 const Payment = () => {
 
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
     // const stripe = useStripe();
     // const elements = useElements();
@@ -43,14 +45,38 @@ const Payment = () => {
         phoneNo: shippingInfo.phoneNo,
     };
 
-    // const order = {
-    //     shippingInfo,
-    //     orderItems: cartItems,
-    //     totalPrice,
-    // }
+    const order = {
+        shippingInfo,
+        orderItems: cartItems,
+        totalPrice,
+    }
 
     const submitHandler = async (e) =>{
         e.preventDefault();
+        const token = localStorage.getItem('token');
+        try{
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+
+
+            };
+            const {data} = await axios.post(
+                'http://localhost:4000/api/v1/order/neworder',
+                order,
+                config
+            )
+            console.log(data)
+            
+            // dispatch(newOrder(order));
+            dispatch(emptyCart());
+            navigate("/orders");
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 
     // const submitHandler = async (e) => {
