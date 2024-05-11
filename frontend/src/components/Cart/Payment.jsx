@@ -64,7 +64,7 @@ const Payment = () => {
 
             };
             const {data} = await axios.post(
-                'http://localhost:4000/api/v1/order/neworder',
+                'https://e-commerce-1-v807.onrender.com/api/v1/order/neworder',
                 order,
                 config
             )
