@@ -123,7 +123,7 @@ const Footer = () => {
       {!adminRoute && (
         <>
           <footer className="mt-20 w-full py-1 sm:py-4 px-4 sm:px-12 bg-primary-darkBlue text-white text-xs border-b border-gray-600 flex flex-col sm:flex-row overflow-hidden">
-            <div className="w-full sm:w-full flex flex-col sm:flex-row justify-center">
+            <div className="w-full sm:w-full sm:flex grid grid-cols-2 sm:flex-row justify-center">
 
               {footerLinks.map((el, i) => (
                 <div className="w-full sm:w-1/5 flex flex-col gap-2 my-3 sm:my-6 ml-10" key={i}>
@@ -167,7 +167,7 @@ const Footer = () => {
           </footer>
           {/* <!-- footer ends --> */}
 
-          <div className="px-16 py-6 w-full bg-primary-darkBlue hidden sm:flex justify-center items-center text-sm text-white">
+          <div className="px-16 py-6 w-full bg-primary-darkBlue sm:flex justify-center items-center sm:text-sm text-white">
             {/* <a href="https://seller.flipkart.com/sell-online" target="_blank" rel="noreferrer" className="flex items-center gap-2">
               <span className="text-yellow-400"><WorkIcon sx={{ fontSize: "20px" }} /></span> Sell On Flipkart
             </a>
@@ -181,7 +181,7 @@ const Footer = () => {
               <span className="text-yellow-400"><HelpIcon sx={{ fontSize: "20px" }} /></span> Help Center
             </a> */}
 
-            <span style={{fontSize: '20px'}}>Copyright &copy; {new Date().getFullYear()} Roced</span>
+            <span className='flex items-center justify-center text-2xl'>Copyright &copy; {new Date().getFullYear()} Roced</span>
             {/* <img draggable="false" src={paymentMethods} alt="Card Payment" /> */}
           </div>
         </>
