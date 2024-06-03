@@ -43,16 +43,16 @@ const Header = () => {
       <div className="w-full sm:w-5/6 px-1 sm:px-4 m-auto flex justify-center items-center relative">
         <div className="flex items-center flex-1">
           <a href="/">
-            <img draggable="false" style={{width: `${onMobile ? '100px':'150px'}`, marginRight: '40px'}} src={logo} alt="Roced Logo" />
+            <img draggable="false" style={{width: `${onMobile ? '80px':'150px'}`, marginRight: '40px'}} src={logo} alt="Roced Logo" />
           </a>
           <Searchbar />
         </div>
-        <div className="flex items-center justify-between ml-1 sm:ml-0 gap-0.5 sm:gap-7 relative">
+        <div className="flex items-center justify-between ml-1 sm:ml-0 gap-0.5 sm:gap-7">
           {isAuthenticated !== true ?
-            <a href="/login" className="px-3 sm:px-9 py-0.5 text-black bg-white border font-medium rounded-sm cursor-pointer">Login</a>
+            <a href="/login" className="px-3 sm:px-9 py-1.5 text-black bg-white sm:border font-medium rounded-lg cursor-pointer">Login</a>
             :
             (
-              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{onMobile ? '' : 'Xin chào'}
+              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer relative" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{onMobile ? '' : 'Xin chào'}
                 <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
               </span>
             )
