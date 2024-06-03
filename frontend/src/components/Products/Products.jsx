@@ -68,10 +68,11 @@ const Products = () => {
             <main className="w-full mt-14 sm:mt-0">
 
                 {/* <!-- row --> */}
-                <div className="flex gap-3 mt-2 sm:mt-2 sm:mx-3 m-auto mb-7">
+                <div className="flex sm:flex-row flex-col gap-3 mt-2 sm:mt-2 sm:mx-3 m-auto mb-7">
 
                     {/* <!-- sidebar column  --> */}
-                    <div className="hidden sm:flex flex-col w-1/5 px-1">
+                    {/* <div className="hidden sm:flex flex-col w-1/5 px-1"> */}
+                    <div className="sm:flex flex-col w-full sm:w-1/5 px-1">
 
                         {/* <!-- nav tiles --> */}
                         <div className="flex flex-col bg-white rounded-sm shadow">

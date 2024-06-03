@@ -31,7 +31,7 @@ const Product = (props) => {
     return (
         <div className="flex flex-col items-center gap-2 px-2 py-6 relative">
             {/* <!-- image & product title --> */}
-            <Link to={`/product/${_id}`} className="flex flex-col items-center text-center group">
+            <Link to={`/product/${_id}`} className="flex flex-col items-center justify-center text-center group">
                 <div className="w-36 h-36">
                     <img draggable="false" className="w-full h-full object-contain" src={images[0].url} alt={name} />
                 </div>
@@ -42,7 +42,7 @@ const Product = (props) => {
             {/* <!-- product description --> */}
             <div className="flex flex-col gap-2 items-center">
                 {/* <!-- rating badge --> */}
-                <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
+                <span className="text-sm text-gray-500 font-medium flex gap-2 items-center justify-center">
                     <span className="text-xs px-1.5 py-0.5 bg-primary-green rounded-sm text-white flex items-center gap-0.5">{ratings.toFixed(1)} <StarIcon sx={{ fontSize: "14px" }} /></span>
                     <span>({numOfReviews.toLocaleString()})</span>
                 </span>

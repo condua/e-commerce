@@ -16,14 +16,34 @@ const Header = () => {
   const [togglePrimaryDropDown, setTogglePrimaryDropDown] = useState(false);
   const [toggleSecondaryDropDown, setToggleSecondaryDropDown] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const [onMobile, setOnMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 600) {
+        setOnMobile(true);
+      } else {
+        setOnMobile(false);
+      }
+    };
+  
+    // Gọi handleResize ngay khi component được mount
+    handleResize();
+  
+    // Thêm event listener để theo dõi thay đổi kích thước cửa sổ
+    window.addEventListener('resize', handleResize);
+  
+    // Loại bỏ event listener khi component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // Rỗng để chỉ chạy một lần khi component được mount
 
   return (
     <header className="bg-white fixed top-0 w-full z-10 p-3">
       <div className="w-full sm:w-5/6 px-1 sm:px-4 m-auto flex justify-center items-center relative">
         <div className="flex items-center flex-1">
           <a href="/">
-            <img draggable="false" style={{width: '150px', marginRight: '40px'}} src={logo} alt="Roced Logo" />
+            <img draggable="false" style={{width: `${onMobile ? '100px':'150px'}`, marginRight: '40px'}} src={logo} alt="Roced Logo" />
           </a>
           <Searchbar />
         </div>
@@ -32,7 +52,7 @@ const Header = () => {
             <a href="/login" className="px-3 sm:px-9 py-0.5 text-black bg-white border font-medium rounded-sm cursor-pointer">Login</a>
             :
             (
-              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>Xin chào
+              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{onMobile ? '' : 'Xin chào'}
                 <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
               </span>
             )
