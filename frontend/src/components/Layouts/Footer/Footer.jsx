@@ -181,7 +181,7 @@ const Footer = () => {
               <span className="text-yellow-400"><HelpIcon sx={{ fontSize: "20px" }} /></span> Help Center
             </a> */}
 
-            <span className='flex items-center justify-center text-2xl'>Copyright &copy; {new Date().getFullYear()} Roced</span>
+            <span className='flex items-center justify-center sm:text-xl text-lg'>Copyright &copy; {new Date().getFullYear()} Roced</span>
             {/* <img draggable="false" src={paymentMethods} alt="Card Payment" /> */}
           </div>
         </>
