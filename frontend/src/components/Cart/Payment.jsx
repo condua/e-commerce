@@ -73,7 +73,7 @@ const Payment = () => {
             if(method === 'zalopay')
             {
                 const {data} = await axios.post(
-                    'http://localhost:5000/create-payment',
+                    'https://e-commerce-1-v807.onrender.com/api/v1/order/create-payment',
                     reqData,
                     config
                 )
