@@ -21,6 +21,7 @@ import MetaData from '../Layouts/MetaData';
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { emptyCart } from '../../actions/cartAction';
+import zalopay from '../../assets/images/zalopay.png'
 
 const Payment = () => {
 
@@ -30,6 +31,7 @@ const Payment = () => {
     // const stripe = useStripe();
     // const elements = useElements();
     // const paymentBtn = useRef(null);
+    const [method, setMethod] = useState(''); // Khởi tạo state
 
     const [payDisable, setPayDisable] = useState(false);
 
@@ -51,6 +53,11 @@ const Payment = () => {
         totalPrice,
     }
 
+    const amount = order.shippingInfo.totalPrice;
+    const reqData = {
+        app_user: user.email,
+        amount: totalPrice,
+    }
     const submitHandler = async (e) =>{
         e.preventDefault();
         const token = localStorage.getItem('token');
@@ -63,13 +70,25 @@ const Payment = () => {
 
 
             };
+            if(method === 'zalopay')
+            {
+                const {data} = await axios.post(
+                    'http://localhost:5000/create-payment',
+                    reqData,
+                    config
+                )
+                console.log(data.transaction);
+                // window.location.href = data.transaction.order_url;
+                // window.open(data.transaction.order_url, '_blank');
+                window.open(data.transaction.order_url, 'ZaloPay Payment', 'width=800,height=600');
+            }
+
             const {data} = await axios.post(
                 'https://e-commerce-1-v807.onrender.com/api/v1/order/neworder',
                 order,
                 config
             )
-            console.log(data)
-            
+            console.log(data);
             // dispatch(newOrder(order));
             dispatch(emptyCart());
             navigate("/orders");
@@ -156,7 +175,12 @@ const Payment = () => {
             dispatch(clearErrors());
             enqueueSnackbar(error, { variant: "error" });
         }
+
     }, [dispatch, error, enqueueSnackbar]);
+
+    useEffect(() => {
+        console.log(method);
+    }, [method]);
 
 
     return (
@@ -182,12 +206,24 @@ const Payment = () => {
                                             name="payment-radio-button"
                                         >
                                             <FormControlLabel
+                                                onClick={() => setMethod('cod')}
                                                 value="cod"
                                                 control={<Radio />}
                                                 label={
-                                                    <div className="flex items-center gap-4">
+                                                    <div className="flex items-center gap-4" >
                                                         <img draggable="false" className="h-10 w-10 object-contain" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT08FpvDoIXUDGdRJ2iFh0FOqegvJjOgoHKZT6wXXnLjA&s" alt="cod Logo" />
                                                         <span>COD</span>
+                                                    </div>
+                                                }
+                                            />
+                                            <FormControlLabel
+                                                value="zalopay"
+                                                onClick={() => setMethod('zalopay')}
+                                                control={<Radio />}
+                                                label={
+                                                    <div className="flex items-center gap-4">
+                                                        <img draggable="false" className="h-10 w-10 object-contain" src={zalopay} alt="zalopay Logo" />
+                                                        <span>Zalo Pay</span>
                                                     </div>
                                                 }
                                             />

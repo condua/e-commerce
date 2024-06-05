@@ -3,6 +3,11 @@ const Order = require('../models/orderModel');
 const Product = require('../models/productModel');
 const ErrorHandler = require('../utils/errorHandler');
 const sendEmail = require('../utils/sendEmail');
+const qs = require('qs');
+const axios = require('axios').default;
+const CryptoJS = require('crypto-js');
+const moment = require('moment');
+const path = require('path');
 
 // Create New Order
 exports.createNewOrder = asyncErrorHandler(async (req, res, next)=>{
@@ -174,3 +179,77 @@ exports.deleteOrder = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
+exports.paymentZaloPay = asyncErrorHandler(async (req, res, next) =>{
+    const { app_user, amount } = req.body;
+    const embed_data = {
+      redirecturl: "https://roced.online"
+    };
+    const items = [{}];
+    const transID = Math.floor(Math.random() * 1000000);
+    const order = {
+      app_id: config.app_id,
+      app_trans_id: `${moment().format('YYMMDD')}_${transID}`,
+      app_user: app_user,
+      app_time: Date.now(),
+      item: JSON.stringify(items),
+      embed_data: JSON.stringify(embed_data),
+      amount: parseInt(amount),
+      description: `Payment for the order #${transID}`,
+      bank_code: "zalopayapp",
+    };
+  
+    // Tạo chữ ký (hmac sha256)
+    const data = `${config.app_id}|${order.app_trans_id}|${order.app_user}|${order.amount}|${order.app_time}|${order.embed_data}|${order.item}`;
+    order.mac = CryptoJS.HmacSHA256(data, config.key1).toString();
+  
+    try {
+      const response = await axios.post(config.endpoint, null, { params: order });
+      const order_url = response.data.order_url;
+  
+      // Lưu thông tin giao dịch vào MongoDB
+      const transaction = new Transaction({
+        app_trans_id: order.app_trans_id,
+        app_user: order.app_user,
+        amount: order.amount,
+        app_time: new Date(order.app_time),
+        description: order.description,
+        order_url: order_url,
+      });
+  
+      // await transaction.save();
+  
+      res.json({ transaction });
+    } catch (error) {
+      console.error('Payment creation failed!', error);
+      res.status(500).json({ message: 'Payment creation failed!', error: error.message });
+    }
+})
+
+exports.statusPaymentZaloPay = asyncErrorHandler(async (req, res, next) =>{
+    const app_trans_id = req.params.app_trans_id;
+    let postData = {
+        app_id: config.app_id,
+        app_trans_id: app_trans_id, // Input your app_trans_id
+    }
+    
+    let data = postData.app_id + "|" + postData.app_trans_id + "|" + config.key1; // appid|app_trans_id|key1
+    postData.mac = CryptoJS.HmacSHA256(data, config.key1).toString();
+    
+    
+    let postConfig = {
+        method: 'post',
+        url: 'https://sb-openapi.zalopay.vn/v2/query',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: qs.stringify(postData)
+    };
+    
+    try{
+        const result = await axios(postConfig);
+        return res.status(200).json(result.data);
+    }catch (err){
+        console.log(err.message);
+    }
+       
+}) 
