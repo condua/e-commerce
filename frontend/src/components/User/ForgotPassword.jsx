@@ -29,7 +29,7 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const res = axios.post('http://localhost:4000/api/v1/forgot-password',{
+            const res = axios.post('https://e-commerce-1-v807.onrender.com/api/v1/forgot-password',{
                 email:email
             }).then((res)=>{
                 console.log(res);
@@ -44,7 +44,7 @@ const ForgotPassword = () => {
     const handleForgotPassword = async (e) =>{
         // e.preventDefault();
         try{
-            const res = await axios.post('http://localhost:4000/api/v1/reset-password',{
+            const res = await axios.post('https://e-commerce-1-v807.onrender.com/api/v1/reset-password',{
                 email: email,
                 otp: otp,
                 newPassword: newPassword,
