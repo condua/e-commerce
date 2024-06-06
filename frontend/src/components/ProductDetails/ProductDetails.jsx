@@ -155,14 +155,14 @@ const ProductDetails = () => {
                                     <div className="w-full flex gap-3">
                                         {/* <!-- add to cart btn --> */}
                                         {product.stock > 0 && (
-                                            <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-yellow rounded-sm shadow hover:shadow-lg">
+                                            <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-1/2 flex items-center justify-center gap-2 text-white sm:text-xl text-xs bg-primary-yellow rounded-sm shadow hover:shadow-lg">
                                                 <ShoppingCartIcon />
-                                                {itemInCart ? "GO TO CART" : "ADD TO CART"}
+                                                {itemInCart ? "ĐI ĐẾN GIỎ HÀNG" : "THÊM VÀO GIỎ HÀNG"}
                                             </button>
                                         )}
-                                        <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm shadow hover:shadow-lg" : "p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-orange rounded-sm shadow hover:shadow-lg"}>
+                                        <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white sm:text-xl text-xs bg-red-600 cursor-not-allowed rounded-sm shadow hover:shadow-lg" : "p-4 w-1/2 flex items-center justify-center gap-2 text-white sm:text-xl text-xs bg-primary-orange rounded-sm shadow hover:shadow-lg"}>
                                             <FlashOnIcon />
-                                            {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
+                                            {product.stock < 1 ? "HẾT HÀNG" : "MUA NGAY"}
                                         </button>
                                         {/* <!-- add to cart btn --> */}
                                     </div>
@@ -187,19 +187,19 @@ const ProductDetails = () => {
                                     {/* <!-- rating badge --> */}
 
                                     {/* <!-- price desc --> */}
-                                    <span className="text-primary-green text-sm font-medium">Special Price</span>
+                                    <span className="text-primary-green text-sm font-medium">Giá đặc biệt</span>
                                     <div className="flex items-baseline gap-2 text-3xl font-medium">
                                         <span className="text-gray-800">₫{product.price?.toLocaleString()}</span>
                                         <span className="text-base text-gray-500 line-through">₫{product.cuttedPrice?.toLocaleString()}</span>
-                                        <span className="text-base text-primary-green">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
+                                        <span className="text-base text-primary-green">Giảm tới {getDiscount(product.price, product.cuttedPrice)}%&nbsp;</span>
                                     </div>
                                     {product.stock <= 10 && product.stock > 0 && (
-                                        <span className="text-red-500 text-sm font-medium">Hurry, Only {product.stock} left!</span>
+                                        <span className="text-red-500 text-sm font-medium">Nhanh nào, chỉ còn {product.stock} sản phẩm!</span>
                                     )}
                                     {/* <!-- price desc --> */}
 
                                     {/* <!-- banks offers --> */}
-                                    <p className="text-md font-medium">Available offers</p>
+                                    <p className="text-md font-medium">Ưu đãi có sẵn</p>
                                     {/* {Array(3).fill("").map((el, i) => (
                                         <p className="text-sm flex items-center gap-1" key={i}>
                                             <span className="text-primary-lightGreen"><LocalOfferIcon sx={{ fontSize: "20px" }} /></span>
@@ -211,14 +211,15 @@ const ProductDetails = () => {
                                     {/* <!-- warranty & brand --> */}
                                     <div className="flex gap-8 mt-2 items-center text-sm">
                                         <img draggable="false" className="w-20 h-8 p-0.5 border object-contain" src={product.brand?.logo.url} alt={product.brand && product.brand.name} />
-                                        <span>{product.warranty} Year Warranty <Link className="font-medium text-primary-blue" to="/">Know More</Link></span>
+                                        <span>{product.warranty} Năm bảo hành </span>
+                                        {/* <Link className="font-medium text-primary-blue" to="/">Know More</Link> */}
                                     </div>
                                     {/* <!-- warranty & brand --> */}
 
                                     {/* <!-- delivery details --> */}
                                     <div className="flex gap-16 mt-4 items-center text-sm font-medium">
-                                        <p className="text-gray-500">Delivery</p>
-                                        <span>Delivery by {getDeliveryDate()}</span>
+                                        <p className="text-gray-500">Giao hàng</p>
+                                        <span>Trước {getDeliveryDate()}</span>
                                     </div>
                                     {/* <!-- delivery details --> */}
 
@@ -226,7 +227,7 @@ const ProductDetails = () => {
                                     <div className="flex flex-col sm:flex-row justify-between">
                                         {/* <!-- highlights details --> */}
                                         <div className="flex gap-16 mt-4 items-stretch text-sm">
-                                            <p className="text-gray-500 font-medium">Highlights</p>
+                                            <p className="text-gray-500 font-medium">Điểm nổi bật</p>
 
                                             <ul className="list-disc flex flex-col gap-2 w-64">
                                                 {product.highlights?.map((highlight, i) => (
@@ -240,16 +241,16 @@ const ProductDetails = () => {
 
                                         {/* <!-- services details --> */}
                                         <div className="flex gap-16 mt-4 mr-6 items-stretch text-sm">
-                                            <p className="text-gray-500 font-medium">Services</p>
+                                            <p className="text-gray-500 font-medium">Các dịch vụ</p>
                                             <ul className="flex flex-col gap-2">
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span> {product.warranty} Year</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span>Bảo hành {product.warranty} năm</p>
                                                 </li>
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><CachedIcon sx={{ fontSize: "18px" }} /></span> 7 Days Replacement Policy</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><CachedIcon sx={{ fontSize: "18px" }} /></span> Chính sách đổi trả trong vòng 7 ngày</p>
                                                 </li>
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><span style={{fontSize:'18px',marginRight:'5px', marginLeft:'5px'}}>₫</span></span>  Cash on Delivery available</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><span style={{fontSize:'18px',marginRight:'5px', marginLeft:'5px'}}>₫</span></span>  Có thể thanh toán khi nhận hàng</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -259,8 +260,8 @@ const ProductDetails = () => {
 
                                     {/* <!-- seller details --> */}
                                     <div className="flex gap-16 mt-4 items-center text-sm font-medium">
-                                        <p className="text-gray-500">Seller</p>
-                                        <Link className="font-medium text-primary-blue ml-3" to="/">{product.brand && product.brand.name}</Link>
+                                        <p className="text-gray-500 font-medium w-20">Nhãn hàng</p>
+                                        <Link className="font-medium text-primary-blue" to="/">{product.brand && product.brand.name}</Link>
                                     </div>
                                     {/* <!-- seller details --> */}
 
@@ -272,14 +273,14 @@ const ProductDetails = () => {
 
                                     {/* <!-- description details --> */}
                                     <div className="flex flex-col sm:flex-row gap-1 sm:gap-14 mt-4 items-stretch text-sm">
-                                        <p className="text-gray-500 font-medium">Description</p>
+                                        <p className="text-gray-500 font-medium w-20">Mô tả</p>
                                         <span>{product.description}</span>
                                     </div>
                                     {/* <!-- description details --> */}
 
                                     {/* <!-- border box --> */}
                                     <div className="w-full mt-6 rounded-sm border flex flex-col">
-                                        <h1 className="px-6 py-4 border-b text-2xl font-medium">Product Description</h1>
+                                        <h1 className="px-6 py-4 border-b text-2xl font-medium">Mô tả chi tiết sản phẩm</h1>
                                         <div className="p-6">
                                             <p className="text-sm">{product.description}</p>
                                         </div>
@@ -288,8 +289,8 @@ const ProductDetails = () => {
 
                                     {/* <!-- specifications border box --> */}
                                     <div className="w-full mt-4 pb-4 rounded-sm border flex flex-col">
-                                        <h1 className="px-6 py-4 border-b text-2xl font-medium">Specifications</h1>
-                                        <h1 className="px-6 py-3 text-lg">General</h1>
+                                        <h1 className="px-6 py-4 border-b text-2xl font-medium">Đặc điểm</h1>
+                                        <h1 className="px-6 py-3 text-lg">Tổng quan</h1>
 
                                         {/* <!-- specs list --> */}
                                         {product.specifications?.map((spec, i) => (
@@ -306,8 +307,8 @@ const ProductDetails = () => {
                                     {/* <!-- reviews border box --> */}
                                     <div className="w-full mt-4 rounded-sm border flex flex-col">
                                         <div className="flex justify-between items-center border-b px-6 py-4">
-                                            <h1 className="text-2xl font-medium">Ratings & Reviews</h1>
-                                            <button onClick={handleDialogClose} className="shadow bg-primary-yellow text-white px-4 py-2 rounded-sm hover:shadow-lg">Rate Product</button>
+                                            <h1 className="text-2xl font-medium">Đánh giá sản phẩm</h1>
+                                            <button onClick={handleDialogClose} className="shadow bg-primary-yellow text-white px-4 py-2 rounded-sm hover:shadow-lg">Đánh giá ngay</button>
                                         </div>
 
                                         <Dialog
@@ -378,7 +379,7 @@ const ProductDetails = () => {
 
                         {/* Sliders */}
                         <div className="flex flex-col gap-3 mt-6">
-                            <ProductSlider title={"Similar Products"} tagline={"Based on the category"} />
+                            <ProductSlider title={"Sản phẩm tương tự"} tagline={"Dựa trên phân loại"} />
                         </div>
 
                     </main>

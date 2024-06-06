@@ -30,8 +30,8 @@ const Home = () => {
       <Categories />
       <main className="flex flex-col gap-3 px-2 mt sm:mt-2">
         <Banner />
-        <DealSlider title={"Discounts for You"} />
-        {!loading && <ProductSlider title={"Suggested for You"} tagline={"Based on Your Activity"} />}
+        <DealSlider title={"Khuyến mãi dành cho bạn"} />
+        {!loading && <ProductSlider title={"Đồ bạn thích ở đây"} tagline={"Rất nhiều ưu đãi tại đây"} />}
         {/* <DealSlider title={"Top Brands, Best Price"} /> */}
         {/* {!loading && <ProductSlider title={"You May Also Like..."} tagline={"Based on Your Interest"} />}
         <DealSlider title={"Top Offers On"} />

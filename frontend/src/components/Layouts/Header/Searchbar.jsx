@@ -18,8 +18,8 @@ const Searchbar = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="w-2/3 relative sm:w-9/12 px-1 sm:px-4 py-1.5 flex justify-between items-center shadow-md bg-white rounded-sm overflow-hidden">
-            <input value={keyword} onChange={(e) => setKeyword(e.target.value)} className="text-sm flex-1 outline-none border-none placeholder-gray-500" type="text" placeholder="Search" />
+        <form onSubmit={handleSubmit} className="w-2/3 relative sm:w-4/5 px-1 sm:px-4 py-1.5 flex justify-between items-center shadow-lg shadow-gray-300 bg-white rounded-sm overflow-hidden">
+            <input value={keyword} onChange={(e) => setKeyword(e.target.value)} className="text-sm flex-1 outline-none border-none placeholder-gray-500" type="text" placeholder="Tìm kiếm" />
             <button type="submit" className="absolute right-0 text-primary-blue"><SearchIcon /></button>
         </form>
     );

@@ -61,7 +61,7 @@ const Shipping = () => {
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
                                         fullWidth
-                                        label="Address"
+                                        label="Địa chỉ"
                                         variant="outlined"
                                         required
                                     />
@@ -71,7 +71,7 @@ const Shipping = () => {
                                             value={pincode}
                                             onChange={(e) => setPincode(e.target.value)}
                                             type="number"
-                                            label="Pincode"
+                                            label="Mã bưu chính"
                                             fullWidth
                                             variant="outlined"
                                             required
@@ -80,7 +80,7 @@ const Shipping = () => {
                                             value={phoneNo}
                                             onChange={(e) => setPhoneNo(e.target.value)}
                                             type="number"
-                                            label="Phone No"
+                                            label="Số điện thoại"
                                             fullWidth
                                             variant="outlined"
                                             required
@@ -91,13 +91,13 @@ const Shipping = () => {
                                         <TextField
                                             value={city}
                                             onChange={(e) => setCity(e.target.value)}
-                                            label="City"
+                                            label="Thành phố"
                                             fullWidth
                                             variant="outlined"
                                             required
                                         />
                                         <TextField
-                                            label="Landmark (Optional)"
+                                            label="Mốc tùy chọn"
                                             fullWidth
                                             variant="outlined"
                                         />
@@ -106,7 +106,7 @@ const Shipping = () => {
                                     <div className="flex gap-6">
 
                                         <FormControl fullWidth>
-                                            <InputLabel id="country-select">Country</InputLabel>
+                                            <InputLabel id="country-select">Quốc gia</InputLabel>
                                             <Select
                                                 labelId="country-select"
                                                 id="country-select"
@@ -120,7 +120,7 @@ const Shipping = () => {
                                         </FormControl>
 
                                         <FormControl fullWidth disabled={country ? false : true}>
-                                            <InputLabel id="state-select">State</InputLabel>
+                                            <InputLabel id="state-select">Tỉnh</InputLabel>
                                             <Select
                                                 labelId="state-select"
                                                 id="state-select"
@@ -137,7 +137,7 @@ const Shipping = () => {
 
                                     </div>
 
-                                    <button type="submit" className="bg-primary-orange w-full sm:w-1/3 my-2 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none">save and deliver here</button>
+                                    <button type="submit" className="bg-primary-orange w-full sm:w-1/5 my-2 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none">lưu</button>
                                 </form>
                             </div>
                         </Stepper>

@@ -30,7 +30,7 @@ const Cart = () => {
 
                         {/* <!-- cart items container --> */}
                         <div className="flex flex-col shadow bg-white">
-                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b">My Cart ({cartItems.length})</span>
+                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b">Giỏ hàng của bạn ({cartItems.length})</span>
 
                             {cartItems && cartItems.length === 0 && (
                                 <EmptyCart />
@@ -43,7 +43,7 @@ const Cart = () => {
 
                             {/* <!-- place order btn --> */}
                             <div className="flex justify-end">
-                                <button onClick={placeOrderHandler} disabled={cartItems.length < 1 ? true : false} className={`${cartItems.length < 1 ? "bg-primary-grey cursor-not-allowed" : "bg-primary-orange"} w-full sm:w-1/3 mx-2 sm:mx-6 my-4 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm`}>PLACE ORDER</button>
+                                <button onClick={placeOrderHandler} disabled={cartItems.length < 1 ? true : false} className={`${cartItems.length < 1 ? "bg-primary-grey cursor-not-allowed" : "bg-primary-orange"} w-full sm:w-1/3 mx-2 sm:mx-6 my-4 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm`}>ĐẶT HÀNG</button>
                             </div>
                             {/* <!-- place order btn --> */}
 
@@ -52,7 +52,7 @@ const Cart = () => {
 
                         {/* <!-- saved for later items container --> */}
                         <div className="flex flex-col mt-5 shadow bg-white">
-                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b">Saved For Later ({saveForLaterItems.length})</span>
+                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b">Lưu để mua sau ({saveForLaterItems.length})</span>
                             {saveForLaterItems && saveForLaterItems.map((item) => (
                                 <SaveForLaterItem {...item} />
                             )

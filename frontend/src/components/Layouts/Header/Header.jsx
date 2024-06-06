@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <header className="bg-white fixed top-0 w-full z-10 p-3">
-      <div className="w-full sm:w-5/6 px-1 sm:px-4 m-auto flex justify-center items-center relative">
+      <div className="w-full sm:w-11/12 px-1 sm:px-4 m-auto flex justify-center items-center relative">
         <div className="flex items-center flex-1">
           <a href="/">
             <img draggable="false" style={{width: `${onMobile ? '80px':'150px'}`, marginRight: '40px'}} src={logo} alt="Roced Logo" />
@@ -62,14 +62,14 @@ const Header = () => {
             <span>{toggleSecondaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
           </span>
           {toggleSecondaryDropDown && <SecondaryDropDownMenu />} */}
-          <a href="/cart" className="flex items-center text-black font-medium gap-2 relative">
+          <a href="/cart" className="flex items-center sm:text-base text-sm text-black font-medium gap-2 relative">
             <span><ShoppingCartIcon /></span>
             {cartItems.length > 0 &&
               <div className="w-5 h-5 p-2 bg-red-500 text-xs rounded-full absolute -top-2 left-3 flex justify-center items-center border">
                 {cartItems.length}
               </div>
             }
-            Cart
+            Giỏ hàng 
           </a>
         </div>
       </div>

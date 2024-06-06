@@ -123,13 +123,13 @@ const MyOrders = () => {
 
                             {/* <!-- filters header --> */}
                             <div className="flex items-center justify-between gap-5 px-4 py-2 border-b">
-                                <p className="text-lg font-medium">Filters</p>
+                                <p className="text-lg font-medium">Lọc</p>
                                 <span onClick={clearFilters} className="text-blue-600 font-medium text-sm uppercase cursor-pointer hover:text-blue-700">clear all</span>
                             </div>
 
                             {/* <!-- order status checkboxes --> */}
                             <div className="flex flex-col py-3 text-sm">
-                                <span className="font-medium px-4">ORDER STATUS</span>
+                                <span className="font-medium px-4">Trạng thái đơn hàng</span>
 
                                 {/* <!-- checkboxes --> */}
                                 <div className="flex flex-col gap-3 px-4 mt-1 pb-3 border-b">
@@ -153,7 +153,7 @@ const MyOrders = () => {
 
                             {/* <!-- order time checkboxes --> */}
                             <div className="flex flex-col pb-2 text-sm">
-                                <span className="font-medium px-4">ORDER TIME</span>
+                                <span className="font-medium px-4">Thời điểm đặt hàng</span>
 
                                 {/* <!-- checkboxes --> */}
                                 <div className="flex flex-col gap-3 mt-1 px-4 pb-3">

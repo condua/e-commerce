@@ -11,19 +11,19 @@ const Stepper = ({ activeStep, children }) => {
 
     const steps = [
         {
-            label: "LOGIN",
+            label: "ĐÃ ĐĂNG NHẬP",
             desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{user.email}</span></p>
         },
         {
-            label: "DELIVERY ADDRESS",
+            label: "ĐỊA CHỈ GIAO HÀNG",
             desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{address}</span></p>
         },
         {
-            label: "ORDER SUMMARY",
+            label: "TÓM TẮT ĐƠN HÀNG",
             desc: <p className="font-medium text-sm">{cartItems.length} Item</p>
         },
         {
-            label: "PAYMENT OPTIONS",
+            label: "LỰA CHỌN THANH TOÁN",
             desc: <p className="font-medium text-sm">Paytm</p>
         }
     ]
