@@ -137,6 +137,7 @@ export const logoutUser = () => async (dispatch) => {
         await axios.get('https://e-commerce-1-v807.onrender.com/api/v1/logout');
         dispatch({ type: LOGOUT_USER_SUCCESS });
         localStorage.setItem('isLog', false);
+        localStorage.removeItem('token');
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,
