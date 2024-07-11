@@ -8,27 +8,39 @@ const cloudinary = require('cloudinary');
 
 // Register User
 exports.registerUser = asyncErrorHandler(async (req, res, next) => {
+    try {
+        const { name, email, gender, password, avatar } = req.body;
 
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: "avatars",
-        width: 150,
-        crop: "scale",
-    });
+        let avatarData = {
+            public_id: '',
+            url: 'https://res.cloudinary.com/dy9yts4fa/image/upload/v1720710068/images-removebg-preview_eh8pdb.png',
+        };
 
-    const { name, email, gender, password } = req.body;
+        if (avatar) {
+            const myCloud = await cloudinary.v2.uploader.upload(avatar, {
+                folder: "avatars",
+                width: 150,
+                crop: "scale",
+            });
 
-    const user = await User.create({
-        name, 
-        email,
-        gender,
-        password,
-        avatar: {
-            public_id: myCloud.public_id,
-            url: myCloud.secure_url,
-        },
-    });
+            avatarData = {
+                public_id: myCloud.public_id,
+                url: myCloud.secure_url,
+            };
+        }
 
-    sendToken(user, 201, res);
+        const user = await User.create({
+            name,
+            email,
+            gender,
+            password,
+            avatar: avatarData,
+        });
+
+        sendToken(user, 201, res);
+    } catch (error) {
+        next(error);
+    }
 });
 
 // Login User
