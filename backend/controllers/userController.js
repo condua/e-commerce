@@ -12,8 +12,8 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
         const { name, email, gender, password, avatar } = req.body;
 
         let avatarData = {
-            public_id: '',
-            url: 'https://res.cloudinary.com/dy9yts4fa/image/upload/v1720710068/images-removebg-preview_eh8pdb.png',
+            public_id: 'images-removebg-preview_dkeowi',
+            url: 'https://res.cloudinary.com/dy9yts4fa/image/upload/v1720711724/avatars/images-removebg-preview_dkeowi.png',
         };
 
         if (avatar) {

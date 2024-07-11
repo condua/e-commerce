@@ -27,11 +27,9 @@ const userSchema = new mongoose.Schema({
     avatar: {
         public_id: {
             type: String,
-            default:'',
         },
         url: {
             type: String,
-            default:'https://res.cloudinary.com/dy9yts4fa/image/upload/v1720710068/images-removebg-preview_eh8pdb.png'
         }
     },
     role: {

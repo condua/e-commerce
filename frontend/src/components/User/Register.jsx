@@ -44,10 +44,10 @@ const Register = () => {
             enqueueSnackbar("Password Doesn't Match", { variant: "error" });
             return;
         }
-        if (!avatar) {
-            enqueueSnackbar("Select Avatar", { variant: "error" });
-            return;
-        }
+        // if (!avatar) {
+        //     enqueueSnackbar("Select Avatar", { variant: "error" });
+        //     return;
+        // }
 
         const formData = new FormData();
         formData.set("name", name);
