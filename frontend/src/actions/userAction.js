@@ -98,6 +98,8 @@ export const registerUser = (userData, email, name) => async (dispatch) => {
             email: email,
             name: name,
         });
+        localStorage.setItem('token', data.token);
+
         console.log(userData)
     } catch (error) {
         dispatch({

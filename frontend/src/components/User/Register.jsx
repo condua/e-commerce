@@ -31,8 +31,8 @@ const Register = () => {
 
     const { name, email, gender, password, cpassword } = user;
 
-    const [avatar, setAvatar] = useState();
-    const [avatarPreview, setAvatarPreview] = useState("preview.png");
+    const [avatar, setAvatar] = useState('https://res.cloudinary.com/dy9yts4fa/image/upload/v1720711724/avatars/images-removebg-preview_dkeowi.png');
+    const [avatarPreview, setAvatarPreview] = useState("https://res.cloudinary.com/dy9yts4fa/image/upload/v1720711724/avatars/images-removebg-preview_dkeowi.png");
 
     const handleRegister = (e) => {
         e.preventDefault();
