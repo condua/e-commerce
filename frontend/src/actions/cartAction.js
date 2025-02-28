@@ -21,7 +21,7 @@ export const addItemsToCart =
   async (dispatch, getState) => {
     try {
       const { data } = await axios.get(
-        `https://e-commerce-2-6yly.onrender.com//api/v1/product/${id}`,
+        `https://e-commerce-2-6yly.onrender.com/api/v1/product/${id}`,
         getTokenConfig()
       );
 

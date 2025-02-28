@@ -72,7 +72,7 @@ const Payment = () => {
       };
       if (method === "zalopay") {
         const { data } = await axios.post(
-          "https://e-commerce-2-6yly.onrender.com//api/v1/order/create-payment",
+          "https://e-commerce-2-6yly.onrender.com/api/v1/order/create-payment",
           reqData,
           config
         );
@@ -87,7 +87,7 @@ const Payment = () => {
       }
 
       const { data } = await axios.post(
-        "https://e-commerce-2-6yly.onrender.com//api/v1/order/neworder",
+        "https://e-commerce-2-6yly.onrender.com/api/v1/order/neworder",
         order,
         config
       );

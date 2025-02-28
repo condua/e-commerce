@@ -31,12 +31,9 @@ const ForgotPassword = () => {
     e.preventDefault();
     try {
       const res = axios
-        .post(
-          "https://e-commerce-2-6yly.onrender.com//api/v1/forgot-password",
-          {
-            email: email,
-          }
-        )
+        .post("https://e-commerce-2-6yly.onrender.com/api/v1/forgot-password", {
+          email: email,
+        })
         .then((res) => {
           console.log(res);
           setSentSuccessfully(true);
@@ -51,7 +48,7 @@ const ForgotPassword = () => {
     // e.preventDefault();
     try {
       const res = await axios
-        .post("https://e-commerce-2-6yly.onrender.com//api/v1/reset-password", {
+        .post("https://e-commerce-2-6yly.onrender.com/api/v1/reset-password", {
           email: email,
           otp: otp,
           newPassword: newPassword,

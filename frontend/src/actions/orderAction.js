@@ -41,7 +41,7 @@ export const newOrder = (order) => async (dispatch) => {
     const config = getTokenConfig();
 
     const { data } = await axios.post(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/order/new",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/order/new",
       order,
       config
     );
@@ -65,7 +65,7 @@ export const myOrders = () => async (dispatch) => {
     const config = getTokenConfig();
 
     const { data } = await axios.get(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/orders/me",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/orders/me",
       config
     );
 
@@ -88,7 +88,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
     const config = getTokenConfig();
 
     const { data } = await axios.get(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/order/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/order/${id}`,
       config
     );
 
@@ -111,7 +111,7 @@ export const getPaymentStatus = (id) => async (dispatch) => {
     const config = getTokenConfig();
 
     const { data } = await axios.get(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/payment/status/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/payment/status/${id}`,
       config
     );
 
@@ -134,7 +134,7 @@ export const getAllOrders = () => async (dispatch) => {
     const config = getTokenConfig();
 
     const { data } = await axios.get(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/admin/orders",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/admin/orders",
       config
     );
 
@@ -157,7 +157,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
     const config = getTokenConfig();
 
     const { data } = await axios.put(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/order/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/order/${id}`,
       order,
       config
     );
@@ -181,7 +181,7 @@ export const deleteOrder = (id) => async (dispatch) => {
     const config = getTokenConfig();
 
     const { data } = await axios.delete(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/order/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/order/${id}`,
       config
     );
 

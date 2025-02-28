@@ -50,7 +50,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/login",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/login",
       { email, password },
       config
     );
@@ -82,7 +82,7 @@ export const registerUser = (userData, email, name) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/register",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/register",
       userData,
       config
     );
@@ -92,7 +92,7 @@ export const registerUser = (userData, email, name) => async (dispatch) => {
       payload: data.user,
     });
     await axios.post(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/send-welcome-email",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/send-welcome-email",
       {
         email: email,
         name: name,
@@ -115,7 +115,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_REQUEST });
     const token = localStorage.getItem("token");
     const { data } = await axios.get(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/me",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/me",
       {
         headers: {
           Authorization: `Bearer ${token}`, // Thêm token vào header Authorization
@@ -137,7 +137,7 @@ export const loadUser = () => async (dispatch) => {
 // Logout User
 export const logoutUser = () => async (dispatch) => {
   try {
-    await axios.get("https://e-commerce-2-6yly.onrender.com//api/v1/logout");
+    await axios.get("https://e-commerce-2-6yly.onrender.com/api/v1/logout");
     dispatch({ type: LOGOUT_USER_SUCCESS });
     localStorage.setItem("isLog", false);
     localStorage.removeItem("token");
@@ -162,7 +162,7 @@ export const updateProfile = (userData) => async (dispatch) => {
       },
     };
     const { data } = await axios.put(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/me/update",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/me/update",
       userData,
       config
     );
@@ -193,7 +193,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/password/update",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/password/update",
       passwords,
       config
     );
@@ -222,7 +222,7 @@ export const forgotPassword = (email) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/password/forgot",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/password/forgot",
       email,
       config
     );
@@ -251,7 +251,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/password/reset/${token}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/password/reset/${token}`,
       passwords,
       config
     );
@@ -275,7 +275,7 @@ export const getAllUsers = () => async (dispatch) => {
     const token = localStorage.getItem("token"); // Lấy token từ LocalStorage
 
     const { data } = await axios.get(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/admin/users"
+      "https://e-commerce-2-6yly.onrender.com/api/v1/admin/users"
     );
     dispatch({
       type: ALL_USERS_SUCCESS,
@@ -307,7 +307,7 @@ export const getUserDetails = (id) => async (dispatch) => {
     };
 
     const { data } = await axios.get(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/user/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/user/${id}`,
       config
     );
 
@@ -336,7 +336,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/user/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/user/${id}`,
       userData,
       config
     );
@@ -364,7 +364,7 @@ export const deleteUser = (id) => async (dispatch) => {
       },
     };
     const { data } = await axios.delete(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/user/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/user/${id}`,
       config
     );
 

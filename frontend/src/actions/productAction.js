@@ -49,9 +49,9 @@ export const getProducts =
     try {
       dispatch({ type: ALL_PRODUCTS_REQUEST });
 
-      let url = `https://e-commerce-2-6yly.onrender.com//api/v1/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&page=${currentPage}`;
+      let url = `https://e-commerce-2-6yly.onrender.com/api/v1/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&page=${currentPage}`;
       if (category) {
-        url = `https://e-commerce-2-6yly.onrender.com//api/v1/products?keyword=${keyword}&category=${category}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&page=${currentPage}`;
+        url = `https://e-commerce-2-6yly.onrender.com/api/v1/products?keyword=${keyword}&category=${category}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&page=${currentPage}`;
       }
       const { data } = await axios.get(url, getTokenConfig());
 
@@ -73,7 +73,7 @@ export const getSimilarProducts = (category) => async (dispatch) => {
     dispatch({ type: ALL_PRODUCTS_REQUEST });
 
     const { data } = await axios.get(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/products?category=${category}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/products?category=${category}`,
       getTokenConfig()
     );
 
@@ -95,7 +95,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
     const { data } = await axios.get(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/product/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/product/${id}`,
       getTokenConfig()
     );
 
@@ -117,7 +117,7 @@ export const newReview = (reviewData) => async (dispatch) => {
     dispatch({ type: NEW_REVIEW_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.put(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/review",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/review",
       reviewData,
       { ...config, ...getTokenConfig() }
     );
@@ -140,7 +140,7 @@ export const getSliderProducts = () => async (dispatch) => {
     dispatch({ type: SLIDER_PRODUCTS_REQUEST });
 
     const { data } = await axios.get(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/products/all",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/products/all",
       getTokenConfig()
     );
 
@@ -162,7 +162,7 @@ export const getAdminProducts = () => async (dispatch) => {
     dispatch({ type: ADMIN_PRODUCTS_REQUEST });
 
     const { data } = await axios.get(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/admin/products",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/admin/products",
       getTokenConfig()
     );
 
@@ -184,7 +184,7 @@ export const createProduct = (productData) => async (dispatch) => {
     dispatch({ type: NEW_PRODUCT_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.post(
-      "https://e-commerce-2-6yly.onrender.com//api/v1/admin/product/new",
+      "https://e-commerce-2-6yly.onrender.com/api/v1/admin/product/new",
       productData,
       { ...config, ...getTokenConfig() }
     );
@@ -207,7 +207,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.put(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/product/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/product/${id}`,
       productData,
       { ...config, ...getTokenConfig() }
     );
@@ -229,7 +229,7 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
     const { data } = await axios.delete(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/product/${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/product/${id}`,
       getTokenConfig()
     );
 
@@ -250,7 +250,7 @@ export const getAllReviews = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEWS_REQUEST });
     const { data } = await axios.get(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/reviews?id=${id}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/reviews?id=${id}`,
       getTokenConfig()
     );
 
@@ -271,7 +271,7 @@ export const deleteReview = (reviewId, productId) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_REVIEW_REQUEST });
     const { data } = await axios.delete(
-      `https://e-commerce-2-6yly.onrender.com//api/v1/admin/reviews?id=${reviewId}&productId=${productId}`,
+      `https://e-commerce-2-6yly.onrender.com/api/v1/admin/reviews?id=${reviewId}&productId=${productId}`,
       getTokenConfig()
     );
 
