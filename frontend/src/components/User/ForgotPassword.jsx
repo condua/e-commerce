@@ -1,174 +1,199 @@
-import TextField from '@mui/material/TextField';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, forgotPassword } from '../../actions/userAction';
-import { useSnackbar } from 'notistack';
-import BackdropLoader from '../Layouts/BackdropLoader';
-import MetaData from '../Layouts/MetaData';
-import FormSidebar from './FormSidebar';
+import TextField from "@mui/material/TextField";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, forgotPassword } from "../../actions/userAction";
+import { useSnackbar } from "notistack";
+import BackdropLoader from "../Layouts/BackdropLoader";
+import MetaData from "../Layouts/MetaData";
+import FormSidebar from "./FormSidebar";
 import React from "react";
-import axios from 'axios';
-import { Form, Modal, Input, Button } from 'antd';
+import axios from "axios";
+import { Form, Modal, Input, Button } from "antd";
 
 const ForgotPassword = () => {
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
 
-    const dispatch = useDispatch();
-    const { enqueueSnackbar } = useSnackbar();
+  const { error, message, loading } = useSelector(
+    (state) => state.forgotPassword
+  );
 
-    const { error, message, loading } = useSelector((state) => state.forgotPassword);
+  const [email, setEmail] = useState("");
+  const [sentSuccessfully, setSentSuccessfully] = useState(false);
+  const [otp, setOtp] = useState(0);
+  const [form] = Form.useForm();
 
-    const [email, setEmail] = useState("");
-    const [sentSuccessfully, setSentSuccessfully] = useState(false);
-    const [otp, setOtp] = useState(0);
-    const [form] = Form.useForm();
+  const [newPassword, setNewPassword] = useState("");
 
-    const [newPassword, setNewPassword] = useState('')
-
-    const navigate = useNavigate();
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try{
-            const res = axios.post('https://e-commerce-1-v807.onrender.com/api/v1/forgot-password',{
-                email:email
-            }).then((res)=>{
-                console.log(res);
-                setSentSuccessfully(true);
-                setOtp(res.data.otp);
-            });
-        }catch(err){
-            alert('Gửi otp thất bại');
-        }
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = axios
+        .post(
+          "https://e-commerce-2-6yly.onrender.com//api/v1/forgot-password",
+          {
+            email: email,
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          setSentSuccessfully(true);
+          setOtp(res.data.otp);
+        });
+    } catch (err) {
+      alert("Gửi otp thất bại");
     }
+  };
 
-    const handleForgotPassword = async (e) =>{
-        // e.preventDefault();
-        try{
-            const res = await axios.post('https://e-commerce-1-v807.onrender.com/api/v1/reset-password',{
-                email: email,
-                otp: otp,
-                newPassword: newPassword,
-            }).then((res)=>{
-                console.log(res);
-            });
-            alert('Đổi mật khẩu thành công');
-            navigate('/login')
-        }catch(err){
-            alert(err);
-        }
+  const handleForgotPassword = async (e) => {
+    // e.preventDefault();
+    try {
+      const res = await axios
+        .post("https://e-commerce-2-6yly.onrender.com//api/v1/reset-password", {
+          email: email,
+          otp: otp,
+          newPassword: newPassword,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      alert("Đổi mật khẩu thành công");
+      navigate("/login");
+    } catch (err) {
+      alert(err);
     }
+  };
 
-    useEffect(() => {
-        if (error) {
-            enqueueSnackbar(error, { variant: "error" });
-            dispatch(clearErrors());
-        }
-        if (message) {
-            enqueueSnackbar(message, { variant: "success" });
-        }
-    }, [dispatch, error, message, enqueueSnackbar]);
+  useEffect(() => {
+    if (error) {
+      enqueueSnackbar(error, { variant: "error" });
+      dispatch(clearErrors());
+    }
+    if (message) {
+      enqueueSnackbar(message, { variant: "success" });
+    }
+  }, [dispatch, error, message, enqueueSnackbar]);
 
-    console.log(otp);
+  console.log(otp);
 
-    return (
-        <>
-            <MetaData title="Forgot Password" />
+  return (
+    <>
+      <MetaData title="Forgot Password" />
 
-            {loading && <BackdropLoader />}
-            <main className="w-full mt-12 sm:pt-20 sm:mt-0">
+      {loading && <BackdropLoader />}
+      <main className="w-full mt-12 sm:pt-20 sm:mt-0">
+        {/* <!-- row --> */}
+        <div className="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-white shadow-lg">
+          <FormSidebar
+            title="Forgot Your Password?"
+            tag="Enter the email address associated with your account."
+          />
 
-                {/* <!-- row --> */}
-                <div className="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-white shadow-lg">
+          {/* <!-- login column --> */}
+          <div className="flex-1 overflow-hidden">
+            <h2 className="text-center text-2xl font-medium mt-6 text-gray-800">
+              Forgot Password
+            </h2>
 
-                    <FormSidebar
-                        title="Forgot Your Password?"
-                        tag="Enter the email address associated with your account."
-                    />
-
-                    {/* <!-- login column --> */}
-                    <div className="flex-1 overflow-hidden">
-                        <h2 className="text-center text-2xl font-medium mt-6 text-gray-800">Forgot Password</h2>
-
-                        {/* <!-- edit info container --> */}
-                        <div className="text-center py-10 px-4 sm:px-14">
-
-                            {/* <!-- input container --> */}
-                            <form onSubmit={handleSubmit}>
-                                <div className="flex flex-col w-full gap-4">
-
-                                    <TextField
-                                        fullWidth
-                                        label="Email"
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-
-                                    {/* <!-- button container --> */}
-                                    <div className="flex flex-col gap-2.5 mt-2 mb-32">
-                                        <p className="text-xs text-primary-grey text-left">By continuing, you agree to Roced's <a href="https://www.Roced.com/pages/terms" className="text-primary-blue"> Terms of Use</a> and <a href="https://www.Roced.com/pages/privacypolicy" className="text-primary-blue"> Privacy Policy.</a></p>
-                                        <button type="submit" className="text-white py-3 w-full bg-primary-orange shadow rounded-sm font-medium">Submit</button>
-                                    </div>
-                                    {/* <!-- button container --> */}
-
-                                </div>
-                            </form>
-                            {/* <!-- input container --> */}
-
-                            <Link to="/register" className="font-medium text-sm text-primary-blue">New to Roced? Create an account</Link>
-                        </div>
-                        {/* <!-- edit info container --> */}
-
-                    </div>
-                    {/* <!-- login column --> */}
-                </div>
-                {/* <!-- row --> */}
-
-            </main>
-            {
-                (sentSuccessfully === true && otp !== 0) ?(
-                    <Modal
-                        title="Reset Password"
-                        open={sentSuccessfully}
-                        onOk={() => setSentSuccessfully(false)}
-                        onCancel={() => setSentSuccessfully(false)}
-                    >
-            <Form form={form} onFinish={handleForgotPassword} layout="vertical">
-                <Form.Item
-                    name="email"
+            {/* <!-- edit info container --> */}
+            <div className="text-center py-10 px-4 sm:px-14">
+              {/* <!-- input container --> */}
+              <form onSubmit={handleSubmit}>
+                <div className="flex flex-col w-full gap-4">
+                  <TextField
+                    fullWidth
                     label="Email"
-                >
-                    <Input defaultValue={email} readOnly={true} />
-                </Form.Item>
-                <Form.Item
-                    name="otp"
-                    label="Otp"
-                >
-                    <Input defaultValue={otp} readOnly= {true} />
-                 </Form.Item>   
-                <Form.Item
-                    name="password"
-                    label="Password"
-                    rules={[{ required: true, message: 'Please enter your password' }]}
-                >
-                    <Input.Password value={newPassword} onChange={(e)=>setNewPassword(e.target.value)}/>
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
-                </Form.Item>
-            </Form>
-                </Modal>
-                ):(
-                    <div>
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
 
-                    </div>
-                )
-            }
-        </>
-    );
+                  {/* <!-- button container --> */}
+                  <div className="flex flex-col gap-2.5 mt-2 mb-32">
+                    <p className="text-xs text-primary-grey text-left">
+                      By continuing, you agree to Roced's{" "}
+                      <a
+                        href="https://www.Roced.com/pages/terms"
+                        className="text-primary-blue"
+                      >
+                        {" "}
+                        Terms of Use
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        href="https://www.Roced.com/pages/privacypolicy"
+                        className="text-primary-blue"
+                      >
+                        {" "}
+                        Privacy Policy.
+                      </a>
+                    </p>
+                    <button
+                      type="submit"
+                      className="text-white py-3 w-full bg-primary-orange shadow rounded-sm font-medium"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                  {/* <!-- button container --> */}
+                </div>
+              </form>
+              {/* <!-- input container --> */}
+
+              <Link
+                to="/register"
+                className="font-medium text-sm text-primary-blue"
+              >
+                New to Roced? Create an account
+              </Link>
+            </div>
+            {/* <!-- edit info container --> */}
+          </div>
+          {/* <!-- login column --> */}
+        </div>
+        {/* <!-- row --> */}
+      </main>
+      {sentSuccessfully === true && otp !== 0 ? (
+        <Modal
+          title="Reset Password"
+          open={sentSuccessfully}
+          onOk={() => setSentSuccessfully(false)}
+          onCancel={() => setSentSuccessfully(false)}
+        >
+          <Form form={form} onFinish={handleForgotPassword} layout="vertical">
+            <Form.Item name="email" label="Email">
+              <Input defaultValue={email} readOnly={true} />
+            </Form.Item>
+            <Form.Item name="otp" label="Otp">
+              <Input defaultValue={otp} readOnly={true} />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[
+                { required: true, message: "Please enter your password" },
+              ]}
+            >
+              <Input.Password
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
+      ) : (
+        <div></div>
+      )}
+    </>
+  );
 };
 
-export default ForgotPassword
+export default ForgotPassword;
