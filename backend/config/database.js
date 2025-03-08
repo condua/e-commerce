@@ -4,11 +4,7 @@ const MONGO_URI = process.env.MONGO_URI;
 const connectDatabase = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://phanhoangphuc0311:%40Phuc1755@cluster0.kkn7cwq.mongodb.net/ecommerce?authSource=Cluster0&authMechanism=SCRAM-SHA-1",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
+      "mongodb+srv://phanphuc0311:phuc1755@cluster0.kkn7cwq.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0"
     );
 
     console.log("MongoDB connection SUCCESS");
